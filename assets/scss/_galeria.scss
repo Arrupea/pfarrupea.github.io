@@ -1,0 +1,58 @@
+#gridGaleria {
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    "header"
+    "titulo"
+    "imagen1gal"
+    "imagen2gal"
+    "imagen3gal"
+    "imagen4gal"
+    "imagen5gal"
+    "imagen6gal"
+    "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(9 auto);
+  grid-row-gap: 5px;
+}
+
+@media screen and (min-width: $screen-widht) {
+  #gridGaleria {
+    grid-template-areas:
+      "header header"
+      "titulo ."
+      "imagen1gal imagen2gal"
+      "imagen3gal imagen4gal"
+      "imagen5gal imagen6gal"
+      "footer footer";
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto 10% auto auto auto 8%;
+    grid-row-gap: 5px;
+    grid-column-gap: 5px;
+  }
+}
+
+.imagenGal__tamaño {
+  object-fit: cover;
+  width: 90%;
+  transition: all 1s;
+}
+
+.imagenGal__tamaño:hover {
+  scale: 120%;
+}
+
+@mixin featureimagengal {
+  display: flex;
+  justify-content: center;
+}
+
+$imagengal: imagen1gal, imagen2gal, imagen3gal, imagen4gal, imagen5gal,
+  imagen6gal;
+
+@each $imagen in $imagengal {
+  .#{$imagen} {
+    grid-area: $imagen;
+    @include featureimagengal;
+  }
+}
