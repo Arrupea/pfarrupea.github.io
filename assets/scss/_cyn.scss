@@ -1,0 +1,61 @@
+#gridCyN {
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    "header"
+    "titulo"
+    "texto1cyn"
+    "knife1"
+    "texto2cyn"
+    "knife2"
+    "texto3cyn"
+    "knife3"
+    "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(9 auto);
+  grid-row-gap: 5px;
+}
+
+@media screen and (min-width: $screen-widht) {
+  #gridCyN {
+    grid-template-areas:
+      "header header"
+      "titulo ."
+      "texto1cyn knife1"
+      "texto2cyn knife2"
+      "texto3cyn knife3"
+      "footer footer";
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto 10% auto auto auto 8%;
+    grid-row-gap: 5px;
+  }
+}
+
+@mixin featuretextoscyn {
+  padding-left: 5%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+@mixin featureknifecyn {
+  display: flex;
+  justify-content: center;
+}
+
+$textocyn: texto1cyn, texto2cyn, texto3cyn;
+
+@each $texto in $textocyn {
+  .#{$texto} {
+    grid-area: $texto;
+    @include featuretextoscyn;
+  }
+}
+
+$knifecyn: knife1, knife2, knife3;
+
+@each $knife in $knifecyn {
+  .#{$knife} {
+    grid-area: $knife;
+    @include featureknifecyn;
+  }
+}
